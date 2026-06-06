@@ -1,0 +1,12 @@
+*.pyc
+*.vscode
+/dist
+settings.json
+.idea/
+.venv/
+*.DS_Store
+__pycache__/
+.buildozer/
+bin/
+*.apk
+*.aab
