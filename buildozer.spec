@@ -12,6 +12,9 @@ package.domain = org.supermario
 # (str) Source code where the main.py live
 source.dir = .
 
+# (str) The main entry point file (defaults to main.py)
+package.entrypoint = main.py
+
 # (list) Source files to include (let empty list to include all the files)
 source.include_exts = py,png,jpg,gif,json,ogg,wav
 

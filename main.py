@@ -1,6 +1,29 @@
-import pygame
-from classes.Config import asset_path, VIRTUAL_WIDTH, VIRTUAL_HEIGHT, TARGET_FPS, IS_MOBILE, DEBUG_MODE
-from classes.Dashboard import Dashboard
+import sys
+import os
+
+# Auto-detect platform before importing game modules
+# On Android (python-for-android), 'android' module is available
+try:
+    import android  # noqa: F401
+    IS_MOBILE = True
+    DEBUG_MODE = False
+except ImportError:
+    IS_MOBILE = False
+    DEBUG_MODE = True
+
+# Override from environment variable if set (useful for desktop testing)
+if os.environ.get('MARIO_MOBILE') == '1':
+    IS_MOBILE = True
+    DEBUG_MODE = False
+
+# Update Config module for other modules that read it
+import classes.Config as Config  # noqa: E402
+Config.IS_MOBILE = IS_MOBILE
+Config.DEBUG_MODE = DEBUG_MODE
+
+import pygame  # noqa: E402
+from classes.Config import asset_path, VIRTUAL_WIDTH, VIRTUAL_HEIGHT, TARGET_FPS  # noqa: E402
+from classes.Dashboard import Dashboard  # noqa: E402
 from classes.Level import Level
 from classes.Menu import Menu
 from classes.Sound import Sound
